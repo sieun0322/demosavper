@@ -1,15 +1,11 @@
 package com.example.domain;
 
 import java.sql.Timestamp;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,28 +20,25 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name="tbl_file_mst")
-@EqualsAndHashCode(of="fid")
-public class File {
+@Table(name="tbl_viewer")
+@EqualsAndHashCode(of="vid")
+public class Viewer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long fid;
-	private String fname;
-	//private String owner;
-	//private String description;
+	private Long vid;
+	//private String vpw;
+	private String vnickname;
+	
+	//private int vcount;
 	
 	//private Timestamp expiredate;
 	
 	@CreationTimestamp
-	private Timestamp regdate;
+	private Timestamp latestdate;
 	
 	@CreationTimestamp
 	private Timestamp createdate;
 	@UpdateTimestamp
 	private Timestamp updatedate;
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="fno")
-	private List<Viewer> viewers;
 }
